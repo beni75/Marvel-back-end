@@ -10,11 +10,9 @@ app.use(cors());
 app.use(express.json());
 
 mongoose.connect(process.env.MONGODB_URI);
-const User = require("./models/User");
 
 // import des routes user :
-const userRoutes = require("../marvel-back-end/routes/user");
-app.use(userRoutes);
+app.use(require("./routes/user"));
 
 app.get("/characters", async (req, res) => {
   try {

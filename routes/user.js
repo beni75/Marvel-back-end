@@ -43,7 +43,6 @@ router.post("/user/signup", async (req, res) => {
       }
     }
   } catch (error) {
-    console.log("jesuisici");
     return res.status(400).json({ message: error.message });
   }
 });
@@ -51,7 +50,6 @@ router.post("/user/signup", async (req, res) => {
 router.post("/user/login", async (req, res) => {
   try {
     const foundUser = await User.findOne({ email: req.body.email });
-    console.log(foundUser);
     if (foundUser) {
       const newHash = SHA256(req.body.password + foundUser.salt).toString(
         encBase64
